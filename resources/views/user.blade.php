@@ -3,23 +3,33 @@
     <head>
         <title>Data User</title>
     </head>
-    <body>
-        <h1>Data User</h1>
-        <table border="1" cellpadding="2" cellspacing="0">
+    <table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Nama</th>
+            <th>ID Level</th>
+            <th>Kode Level</th>
+            <th>Nama Level</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($data as $user)
             <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Nama</th>
-                <th>ID Level Pengguna</th>
+                <td>{{ $user['id'] }}</td>
+                <td>{{ $user['username'] }}</td>
+                <td>{{ $user['nama'] }}</td>
+                <td>{{ $user['level_id'] }}</td>
+                <td>{{ $user['level_kode'] }}</td>
+                <td>{{ $user['level_nama'] }}</td>
+                <td>
+                    <a href="{{ route('user.edit', $user['id']) }}">Ubah</a> |
+                    <a href="{{ route('user.delete', $user['id']) }}" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
+                </td>
             </tr>
-            @foreach ($data as $d)
-            <tr>
-                <td>{{ $d->user_id }}</td>
-                <td>{{ $d->username }}</td>
-                <td>{{ $d->nama }}</td>
-                <td>{{ $d->level_id }}</td>
-            </tr>
-            @endforeach
-        </table>
-    </body>
-</html>
+        @endforeach
+    </tbody>
+</table>
+</html> 
